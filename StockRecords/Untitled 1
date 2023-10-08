@@ -1,0 +1,122 @@
+			if (tableView.getItems().size() == 0 && cBox.getValue().toString() == "Entry"){
+				data.add(new LogList(tfItem.getText(), Integer.parseInt(tfQuantity.getText()), Integer.parseInt(tfQuantity.getText()), 0));
+				//System.exit(0);
+			}
+			
+			
+			for(int i = 0; i < tableView.getItems().size(); i++) {
+					if(cBox.getValue().toString() == "Entry") {
+						if(tfItem.getText() == tableView.getItems().get(i).getItem()) {
+							EntryStockValue = Integer.parseInt(tfQuantity.getText()) + tableView.getItems().get(i).getTotalEntries();
+							ExitStockValue =  tableView.getItems().get(i).getTotalExits();
+							CurrentStockValue = EntryStockValue - ExitStockValue;
+							tableView.getItems().get(i).setTotalEntries(EntryStockValue);
+							tableView.getItems().get(i).setTotalExits(ExitStockValue);
+							tableView.getItems().get(i).setCurrentStock(CurrentStockValue);
+							//System.exit(0);
+						}
+					
+						else if (i == tableView.getItems().size()-1 && tfItem.getText() != tableView.getItems().get(tableView.getItems().size()-1).getItem()){
+							data.add(new LogList(tfItem.getText(), Integer.parseInt(tfQuantity.getText()), Integer.parseInt(tfQuantity.getText()), 0));
+							//System.exit(0);
+						}
+					}
+			
+					else if(cBox.getValue().toString() == "Exit") {
+						if(tfItem.getText() == tableView.getItems().get(i).getItem() && tableView.getItems().get(i).getTotalEntries() >= Integer.parseInt(tfQuantity.getText())) {
+							ExitStockValue = tableView.getItems().get(i).getTotalEntries()- Integer.parseInt(tfQuantity.getText());
+							EntryStockValue =  tableView.getItems().get(i).getTotalEntries();
+							CurrentStockValue = EntryStockValue - ExitStockValue;
+							tableView.getItems().get(i).setTotalEntries(EntryStockValue);
+							tableView.getItems().get(i).setTotalExits(ExitStockValue);
+							tableView.getItems().get(i).setCurrentStock(CurrentStockValue);
+							//System.exit(0);
+							//data.add(new LogList(tfItem.getText(), Integer.parseInt(tfQuantity.getText()), Integer.parseInt(tfQuantity.getText()), 0));
+						}	
+					}
+					System.out.println("loop");
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+						btRecord.setOnAction(e -> {
+				System.out.println(tableView.getItems().size());
+			//LogList x = new LogList(null, CurrentStockValue, null, null);
+			tableViewSize = tableView.getItems().size();
+			if (tableView.getItems().size() == 0 && cBox.getValue().toString() == "Entry"){
+				data.add(new LogList(tfItem.getText(), Integer.parseInt(tfQuantity.getText()), Integer.parseInt(tfQuantity.getText()), 0));
+				//System.exit(0);
+			}
+			
+			else {
+			
+			for(int i = 0; i < tableViewSize; i++) {
+					if(cBox.getValue().toString() == "Entry") {
+						if(tfItem.getText() == tableView.getItems().get(i).getItem()) {
+							EntryStockValue = Integer.parseInt(tfQuantity.getText()) + tableView.getItems().get(i).getTotalEntries();
+							ExitStockValue =  tableView.getItems().get(i).getTotalExits();
+							CurrentStockValue = EntryStockValue - ExitStockValue;
+							data.set(i,new LogList(tfItem.getText(), CurrentStockValue, EntryStockValue, ExitStockValue) );
+							//tableView.getItems().get(i).setTotalEntries(EntryStockValue);
+							//tableView.getItems().get(i).setTotalExits(ExitStockValue);
+							//tableView.getItems().get(i).setCurrentStock(CurrentStockValue);
+							//System.exit(0);
+						}
+					
+						else if (i == tableViewSize-1 && tfItem.getText() != tableView.getItems().get(tableViewSize-1).getItem()){
+							data.add(new LogList(tfItem.getText(), Integer.parseInt(tfQuantity.getText()), Integer.parseInt(tfQuantity.getText()), 0));
+							//System.exit(0);
+						}
+					}
+			
+					else if(cBox.getValue().toString() == "Exit") {
+						if(tfItem.getText() == tableView.getItems().get(i).getItem() && tableView.getItems().get(i).getTotalEntries() >= Integer.parseInt(tfQuantity.getText())) {
+							ExitStockValue = tableView.getItems().get(i).getTotalEntries()- Integer.parseInt(tfQuantity.getText());
+							EntryStockValue =  tableView.getItems().get(i).getTotalEntries();
+							CurrentStockValue = EntryStockValue - ExitStockValue;
+							tableView.getItems().get(i).setTotalEntries(EntryStockValue);
+							tableView.getItems().get(i).setTotalExits(ExitStockValue);
+							tableView.getItems().get(i).setCurrentStock(CurrentStockValue);
+							//System.exit(0);
+							//data.add(new LogList(tfItem.getText(), Integer.parseInt(tfQuantity.getText()), Integer.parseInt(tfQuantity.getText()), 0));
+						}	
+					}
+					
+					System.out.println("loop");
+			}
+				
+			}
+			//data.add(new LogList(tfItem.getText(), Integer.parseInt(tfQuantity.getText()), cBox.getValue().toString(), taNote.getText()));
+			});		
